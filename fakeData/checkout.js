@@ -20,21 +20,26 @@ class Checkout {
   }
 
   calcTotal(valueId) {
-    const totalPrice = Object.values(this.products)
+    // since we have the price with coin units, we parseFloat them
+    const totalCart = Object.values(this.products)
       .reduce((acc, curr) => acc + parseFloat(curr[valueId]), 0);
-    return `${totalPrice}€`;
+    return totalCart;
   }
 
   basePrice() {
-    return this.calcTotal('basePrice');
+    return `${this.calcTotal('basePrice')}€`;
   }
 
   discount() {
-    return this.calcTotal('discount');
+    return `${this.calcTotal('discount')}€`;
   }
 
   total() {
-    return this.calcTotal('totalPrice');
+    return `${this.calcTotal('totalPrice')}€`;
+  }
+
+  get items() {
+    return this.calcTotal('units');
   }
 }
 export default Checkout;
