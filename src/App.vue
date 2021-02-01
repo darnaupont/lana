@@ -4,20 +4,59 @@
       <div class="flex-grow bg-white p-4 rounded-l-md">
         <CSection title="Shopping cart"/>
         content
-        <div v-for="item in products" :key="item.code">
+                <div class="grid grid-cols-6 gap-4 text-center">
+          <div class="text-left">
+          name
+          </div>
+          <div>
+          actions
+          </div>
+          <div>
+            price
+          </div>
+          <div>
+          units
+          </div>
+          <div>
+          total
+          </div>
+          <div>
+          discount
+          </div>
+        </div>
+        <div v-for="item in products" :key="item.code" class="grid grid-cols-6 gap-4 text-right">
+          <div class="text-left">
           {{ item.name }}
-          {{ item.units = 2 }}
+          </div>
+          <div class="flex -mx-2">
+                    <div class="mx-2" @click="add(item.code)">
+          add</div>
+                  <div class="mx-2" @click="remove(item.code)">
+          remove</div>
+
+          </div>
+          <div>
+            {{ item.price }}
+          </div>
+          <div>
+          {{ item.units }}
+          </div>
+          <div>
           {{ item.totalPrice }}
+          </div>
+          <div>
           {{ item.discount }}
+          </div>
         </div>
       </div>
       <div class="flex-grow bg-gray-100 p-4 rounded-r-md">
         <CSection title="Order summary"/>
-        cart
-        <!-- {{cart.products.tshit}}   -->
-        <hr>
-        <!-- {{cart.distance(5)}} -->
-        {{cart.identify()}}
+        {{cart.basePrice()}}
+        {{cart.total()}}
+        <div v-for="item in cart.products" :key="item.code">
+          {{ item.discount }}
+        </div>
+        {{cart.discount()}}
       </div>
 
     </div>
@@ -27,21 +66,8 @@
 <script>
 import CSection from './components/section.vue';
 import products from '../fakeData/products';
+import Checkout from '../fakeData/checkout';
 
-class Checkout {
-  constructor(productsList) {
-    this.products = productsList;
-    this.test = 0;
-  }
-
-  identify() {
-    this.products.tshit.units += 1;
-    console.log(this.products.tshit);
-    // return this;
-    // this.products.tshit += this.products.tshit;
-    // this.products[0].units += this.products[0].units;
-  }
-}
 const cart = new Checkout(products);
 export default {
   name: 'App',
@@ -53,6 +79,14 @@ export default {
       products,
       cart,
     };
+  },
+  methods: {
+    add(id) {
+      this.cart.add(id);
+    },
+    remove(id) {
+      this.cart.remove(id);
+    },
   },
 };
 </script>
