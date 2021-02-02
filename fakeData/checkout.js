@@ -1,21 +1,19 @@
 class Checkout {
   constructor(productsList) {
     this.products = productsList;
-    this.test = 0;
   }
 
   add(id) {
-    const hasProduct = this.products[id];
-    console.log(hasProduct);
-    if (hasProduct) {
-      hasProduct.add(1);
+    const product = this.products[id];
+    if (product) {
+      product.add(1);
     }
   }
 
-  remove(id) {
-    const hasProduct = this.products[id];
-    if (hasProduct) {
-      hasProduct.remove(1);
+  remove(id, units) {
+    const product = this.products[id];
+    if (product) {
+      product.remove(units);
     }
   }
 
