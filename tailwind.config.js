@@ -22,7 +22,20 @@ module.exports = {
       purple: colors.violet,
       pink: colors.pink,
     },
-    spacing,
+    fontFamily: {
+      sans: [
+        'Avenir', 'Avenir Next', 'Segoe UI', 'sans-serif',
+      ],
+      serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+      mono: [
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        '"Liberation Mono"',
+        '"Courier New"',
+        'monospace',
+      ],
+    },
   },
   variants: {
     extend: {},

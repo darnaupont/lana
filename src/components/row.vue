@@ -1,7 +1,10 @@
 <template>
-  <div class="grid grid-cols-4 gap-4 text-center my-6">
+  <div class="grid grid-cols-6 gap-4">
     <slot>
-    <div v-for="item in items" :key="item" class="uppercase text-gray-400 font-bold text-xs">
+    <div v-for="item, index in items"
+    :key="item"
+    :class="[index === 0 ? 'col-span-3' : 'text-center']"
+    class="uppercase text-gray-400 text-xs">
       {{ item }}
     </div>
     </slot>

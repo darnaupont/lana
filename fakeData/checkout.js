@@ -3,17 +3,19 @@ class Checkout {
     this.products = productsList;
   }
 
-  add(id) {
+  // Since we have a cart, i think its better to have
+  // add and remove but its easy to update
+  add(id, units) {
     const product = this.products[id];
     if (product) {
-      product.add(1);
+      product.add(units || 1);
     }
   }
 
   remove(id, units) {
     const product = this.products[id];
     if (product) {
-      product.remove(units);
+      product.remove(units || 1);
     }
   }
 
@@ -32,6 +34,8 @@ class Checkout {
     return `${this.calcTotal('discount')}€`;
   }
 
+  // we keep total like this, because it's on the definition,
+  // but i think is better to set it as a getter
   total() {
     return `${this.calcTotal('totalPrice')}€`;
   }

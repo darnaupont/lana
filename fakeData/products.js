@@ -9,8 +9,15 @@ class Product {
     this.coin = '€';
     this.prodDiscount = discount || defaultDiscount;
     this.discountName = discountName;
+    this.decimals = 2;
     this.units = 0;
-    this.displayPrice = (rawPrice) => rawPrice.toFixed(2);
+  }
+
+  displayPrice(rawPrice) {
+    // destipe the fact I know we should use full digits
+    // in this case you gonna pay 0.25 or 0.24 but not 0.243
+    // also because its only applied to discount
+    return rawPrice.toFixed(this.decimals);
   }
 
   calcBase() {
@@ -28,16 +35,21 @@ class Product {
     return this.displayPrice(rawPrice);
   }
 
+  // actions
   add(addUnits) {
     this.units += addUnits || 1;
   }
 
   remove(addUnits) {
-    if ((this.units - addUnits) >= 0) {
+    if ((this.units - addUnits) > 0) {
       this.units -= addUnits || 1;
+    } else {
+      // if we remove all units or more
+      this.units = 0;
     }
   }
 
+  // getters
   get basePrice() {
     return `${this.calcBase()} ${this.coin}`;
   }

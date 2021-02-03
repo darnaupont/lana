@@ -1,89 +1,70 @@
 <template>
   <div id="app" class="wrapper">
-    <div class="flex main-content">
-      <div class="flex-grow bg-white p-4 rounded-l-md">
-        <CSection title="Shopping cart" />
-        <CHeader :items="['name', 'quantity', 'price', 'total']" />
-        <CHeader v-for="item in products" :key="item.code">
-
-                          <figure class="product-image flex">
-                  <img :src="require(`./assets/img/${item.img}.png`)"
-                  :alt="item.img" class="rounded-md w-20 h-20 object-cover"/>
-                  <div class="text-left mx-4 my-auto">
-                    <h1 class="text-blue-500">{{ item.name }}</h1>
-                    <p class="text-gray-500 font-light text-xs">Product code {{item.code}}</p>
-                  </div>
-                </figure>
-          <div class="flex justify-center items-center">
-            <button class="mx-2 text-blue-500 font-bold" @click="remove(item.code)">
-              -
-            </button>
-            <div class="border-2  rounded-sm px-3 py-2">
-              {{ item.units }}
+    <div class="flex main-content relative">
+      <MFlipFlop :flip-card="modal">
+        <template #front>
+          <div class="w-8/12 bg-white py-8 px-12 rounded-l-md">
+            <CSection title="Shopping cart" />
+            <Table :products="products" :cart="cart" @modal="setModal"/>
+          </div>
+          <div class="w-4/12 bg-gray-100  py-8 px-8 rounded-r-md flex flex-col">
+            <CSection title="Order summary" />
+            <div class="flex justify-between  mt-0 pb-8 border-b border-gray-300 font-light">
+              <div>{{ cart.items }} items</div>
+              <div>
+                {{ cart.basePrice() }}
+              </div>
             </div>
-            <button class="mx-2 text-blue-500 font-bold px-1" @click="add(item.code)">
-              +
-            </button>
-          </div>
-          <div>
-            {{ item.price }}
-          </div>
-          <div>
-            {{ item.basePrice }}
-          </div>
-        </CHeader>
-      </div>
-      <div class="w-2/6 bg-gray-100 p-4 rounded-r-md flex flex-col">
-        <CSection title="Order summary" />
-        <div class="flex justify-between py-4 border-b border-gray-300">
-          <div>
-             {{ cart.items }} items
+            <MSummary :discounts="discounts" />
+            <div class="flex justify-between mt-auto border-t border-gray-300 pt-4 pb-8 text-xl">
+              <div class="text-base uppercase text-gray-500">Total cost</div>
+              <strong>{{ cart.total() }}</strong>
             </div>
-            <div>
-              {{ cart.basePrice()  }}
-            </div>
-          </div>
-        <div class="my-4" v-if="hasDiscounts">
-          Discounts
-        <div v-for="{discount}, index in discounts" :key="`disc_${index}`"
-        class="flex justify-between my-2">
-          <div>
-          {{ discount.name }}
-          </div>
-          <div>
-            {{ discount.value }}
-          </div>
-        </div>
-        </div>
-        <div class="flex justify-between mt-auto border-t border-gray-300 py-4">
-          <div>Total cost</div>
-          <div>{{ cart.total() }}</div>
-        </div>
-            <button class="bg-blue-500 text-white py-3 rounded-sm" @click="()=>console.log('Buy')">
+            <button
+              class="bg-blue-500 text-white py-3 rounded-sm"
+              @click="() => console.log('Buy')"
+            >
               Checkout
             </button>
-      </div>
+          </div>
+        </template>
+
+        <template #back>
+          <div class="bg-gray-200 flex w-full z-10 relative">
+            <img
+              src="./assets/img/shirt.png"
+              class="rounded-l-md w-2/3 h-full object-cover product-image__img z-10 relative"
+            />
+          </div>
+        </template>
+      </MFlipFlop>
     </div>
   </div>
 </template>
 
 <script>
 import CSection from './components/section.vue';
-import CHeader from './components/row.vue';
+import Table from './components/organism/table.vue';
+import MSummary from './components/molecules/MSummary.vue';
+
 import products from '../fakeData/products';
 import Checkout from '../fakeData/checkout';
+import MFlipFlop from './components/flipflop.vue';
 
 const cart = new Checkout(products);
 export default {
   name: 'App',
   components: {
     CSection,
-    CHeader,
+    Table,
+    MSummary,
+    MFlipFlop,
   },
   data() {
     return {
       products,
       cart,
+      modal: null,
     };
   },
   computed: {
@@ -100,39 +81,53 @@ export default {
     },
   },
   methods: {
+    setModal(ev) {
+      this.modal = ev;
+      console.log('modal', ev);
+    },
     add(id) {
       this.cart.add(id);
     },
     remove(id) {
-      this.cart.remove(id, 3);
+      this.cart.remove(id);
     },
   },
 };
 </script>
 
 <style lang="scss">
+.test {
+  font-size: 14px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
 .wrapper {
-  @apply min-h-screen  flex justify-center items-center;
+  overflow: hidden;
+  @apply min-h-screen flex justify-center items-center;
   background-image: url("./assets/img/background.png");
   background-position: center center;
   background-size: cover;
   position: relative;
   z-index: 1;
-  &:after{
-    content: '';
+  &:after {
+    content: "";
     z-index: -1;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     position: absolute;
-    opacity: 0.5;
+    opacity: 0.1;
     @apply bg-black;
   }
 }
 
 .main-content {
-  min-height: 70vh;
-  min-width: 70vw;
+  // i thinks is much better to use
+  // vh or vw than calc 100% - Xpx on the main layout
+  height: 70vh;
+  width: 70vw;
+  max-width: 1088px;
+  max-height: 648px;
 }
 </style>
