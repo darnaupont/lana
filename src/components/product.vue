@@ -1,10 +1,9 @@
 <template>
-  <figure class="product-image flex" @click="test">
+  <figure class="product-image flex" @click="test" ref="img">
     <img
       :src="require(`../assets/img/${img}.png`)"
       :alt="img"
       class="rounded-md w-20 h-20 object-cover product-image__img"
-      ref="img"
     />
     <div class="text-left mx-4 my-auto">
       <h1 class="text-blue-500">{{ name }}</h1>
@@ -34,7 +33,8 @@ export default {
   },
   methods: {
     test(ev) {
-      console.log(ev, this.$refs.img.getBoundingClientRect());
+      console.log(ev, ev.path, ev.path[4].getBoundingClientRect(),
+        this.$refs.img.getBoundingClientRect());
       this.$emit('modal', this.code, this.$refs.img.getBoundingClientRect());
     },
   },

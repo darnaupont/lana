@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="wrapper">
-    <div class="flex main-content relative">
-      <MFlipFlop :flip-card="modal">
+    <div class="flex main-content relative overflow-hidden">
+      <Modal :cart="cart"/>
+      <!-- <MFlipFlop :flip-card="Boolean(modal)" class="relative">
         <template #front>
           <div class="w-8/12 bg-white py-8 px-12 rounded-l-md">
             <CSection title="Shopping cart" />
@@ -37,28 +38,30 @@
             />
           </div>
         </template>
-      </MFlipFlop>
+      </MFlipFlop> -->
     </div>
   </div>
 </template>
 
 <script>
-import CSection from './components/section.vue';
-import Table from './components/organism/table.vue';
-import MSummary from './components/molecules/MSummary.vue';
+// import CSection from './components/section.vue';
+// import Table from './components/organism/table.vue';
+// import MSummary from './components/molecules/MSummary.vue';
+import Modal from './components/modal.vue';
 
 import products from '../fakeData/products';
 import Checkout from '../fakeData/checkout';
-import MFlipFlop from './components/flipflop.vue';
+// import MFlipFlop from './components/flipflop.vue';
 
 const cart = new Checkout(products);
 export default {
   name: 'App',
   components: {
-    CSection,
-    Table,
-    MSummary,
-    MFlipFlop,
+    // CSection,
+    // Table,
+    // MSummary,
+    // MFlipFlop,
+    Modal,
   },
   data() {
     return {
@@ -96,11 +99,6 @@ export default {
 </script>
 
 <style lang="scss">
-.test {
-  font-size: 14px;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-}
 .wrapper {
   overflow: hidden;
   @apply min-h-screen flex justify-center items-center;

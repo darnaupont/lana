@@ -88,6 +88,7 @@ export default {
 .btn{
   min-width: 2rem;
   min-height: 2rem;
+  &-icon {
   transition: transform 0.3s ease-out;
   position: relative;
   z-index: 0;
@@ -116,6 +117,15 @@ export default {
       opacity: 1;
       transform: scale(1);
     }
+  }
+  }
+  &-primary{
+    @apply w-full bg-blue-500 text-white py-3 rounded-sm transition-all duration-300;
+      &:focus,
+  &:hover,
+  &:active{
+    @apply w-full bg-blue-600 shadow-lg;
+  }
   }
 }
 </style>

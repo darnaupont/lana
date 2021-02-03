@@ -7,7 +7,7 @@
         :code="item.code"
         :img="item.img"
         class="col-span-3 text-left"
-        @modal="showModal"
+        @modal="sexy"
         :ref="item.code"
       />
 
@@ -105,25 +105,30 @@ export default {
     remove(id) {
       this.cart.remove(id);
     },
-    showModal(ev, pos) {
+    sexy(ev, pos) {
       const posModal = this.$refs.modal.getBoundingClientRect();
       const posX = pos.left - posModal.left;
       const posY = pos.top - posModal.top;
-      this.origin = `${posY}px ${posX}px`;
+      console.log();
+      this.origin = `${posX}px ${posY}px`;
       this.$nextTick(() => {
         if (this.modal === ev) {
           this.modal = null;
         } else {
           this.modal = ev;
         }
+        this.origin = '0px 0px';
       });
-
-      // setTimeout(() => { this.origin = '0px 0px'; }, 100);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
+.onshow {
+  transition: 0.3s linear;
+  transform: translate(47.99714660644531px, 168.03976440429688px) scale(0.15);
+  transform-origin: 0;
+}
 .slide-fade-enter-active {
 
   transition: all 0.45s ease;
@@ -136,4 +141,5 @@ export default {
   transform: scale(.25);
   opacity: 1;
 }
+/* transform: translate(0,0); */
 </style>
