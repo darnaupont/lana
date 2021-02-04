@@ -67,6 +67,7 @@ class Product {
     };
   }
 }
+
 // discout is made base to "proportional" units value
 const tshirtDiscount = (units) => (units >= 3 ? 0.95 : 1) * units;
 const TSHIRT = new Product('TSHIRT', 'T-shirt', 20, 'shirt', tshirtDiscount, 'x3 Shirt offer');
@@ -76,7 +77,6 @@ const capDiscount = (units) => units - Math.floor(units * 0.5);
 const CAP = new Product('CAP', 'Cap', 5, 'cap', capDiscount, '2x1 Cap offer');
 const MUG = new Product('MUG', 'Coffee Mug', 7.5, 'mug');
 
-console.log(TSHIRT);
 const products = {
   TSHIRT,
   CAP,

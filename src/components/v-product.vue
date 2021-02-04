@@ -1,5 +1,5 @@
 <template>
-  <figure class="product-image flex" @click="test" ref="img">
+  <figure class="product-image flex" @click="showModal">
     <img
       :src="require(`../assets/img/${img}.png`)"
       :alt="img"
@@ -32,19 +32,17 @@ export default {
     },
   },
   methods: {
-    test(ev) {
-      console.log(ev, ev.path, ev.path[4].getBoundingClientRect(),
-        this.$refs.img.getBoundingClientRect());
-      this.$emit('modal', this.code, this.$refs.img.getBoundingClientRect());
+    showModal() {
+      this.$emit('modal', this.code);
     },
   },
 };
+
 </script>
 <style lang="scss">
 .product-image {
   position: relative;
   &__img {
-    cursor: default;
     transition: transform 0.3s ease-out;
     position: relative;
   }

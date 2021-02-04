@@ -6,7 +6,7 @@
     </header>
     <slot />
     <footer
-    v-if="hasSlotDefault"
+    v-if="hasSlotFooter"
     class="flex flex-wrap justify-between mt-8 border-t border-gray-300 pt-6 self-end">
       <slot name="footer"/>
     </footer>
@@ -26,8 +26,8 @@ export default {
     },
   },
   computed: {
-    hasSlotDefault() {
-      return this.$slots.default;
+    hasSlotFooter() {
+      return this.$slots.footer;
     },
   },
 };
