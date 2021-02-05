@@ -24,8 +24,8 @@
 <script>
 import TRow from './row.vue';
 import TCell from './cell.vue';
-import VProduct from '../v-product.vue';
-import VCounter from '../v-counter.vue';
+import VProduct from './v-product.vue';
+import VCounter from './v-counter.vue';
 
 export default {
   components: {

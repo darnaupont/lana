@@ -1,7 +1,7 @@
 <template>
   <section>
     <header v-if="title" class="border-b border-gray-300 pb-6 mb-8 font-semibold flex">
-      {{ title }}
+      <h2>{{ title }}</h2>
       <span v-if="price" class="ml-auto">{{price}}</span>
     </header>
     <slot />

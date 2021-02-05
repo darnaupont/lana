@@ -1,20 +1,22 @@
 <template>
     <VCell>
-    <VButton class="mx-2 text-blue-500 font-bold" variant="icon" @click="remove(item.code)">
+    <VButton class="mx-2 text-blue-500 font-bold btn-remove"
+    variant="icon" @click="remove(item.code)">
         -
     </VButton>
     <input type="number" v-model="units" disabled
     class="border-2 rounded-sm px-3 py-2 w-12 text-center"
  >
-    <VButton class="mx-2 text-blue-500 font-bold px-1" variant="icon" @click="add(item.code)">
+    <VButton class="mx-2 text-blue-500 font-bold px-1 btn-add"
+    variant="icon" @click="add(item.code)">
         +
     </VButton>
     </VCell>
 </template>
 
 <script>
-import VButton from './common/v-button.vue';
-import VCell from './table/cell.vue';
+import VButton from '../common/v-button.vue';
+import VCell from './cell.vue';
 
 export default {
   name: 'MCounter',

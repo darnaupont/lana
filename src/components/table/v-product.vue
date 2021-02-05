@@ -1,9 +1,9 @@
 <template>
-  <figure class="product-image flex" @click="showModal">
+  <figure class="product flex" @click="showModal">
     <img
-      :src="require(`../assets/img/${img}.png`)"
+      :src="require(`../../assets/img/${img}.png`)"
       :alt="img"
-      class="rounded-md w-20 h-20 object-cover product-image__img"
+      class="rounded-md w-20 h-20 object-cover product__img"
     />
     <div class="text-left mx-4 my-auto">
       <h1 class="text-blue-500">{{ name }}</h1>
@@ -39,8 +39,8 @@ export default {
 };
 
 </script>
-<style lang="scss">
-.product-image {
+<style lang="scss" scoped>
+.product {
   position: relative;
   &__img {
     transition: transform 0.3s ease-out;
@@ -55,7 +55,7 @@ export default {
     filter: blur(8px);
   }
   &:hover {
-    .product-image {
+    .product {
       &__img {
         transform: perspective(375px) rotateY(20deg) rotateX(8deg);
       }

@@ -1,9 +1,10 @@
 <template>
-  <VContainer class="modal">
-    <!-- v-if="product" to prefent the render before having product -->
-    <figure class="-my-8 -mx-12 flex-grow">
-        <img
-          v-if="product"
+<div class="modal z-10  h-screen  flex justify-center items-center">
+  <div  class="fixed inset-0 cursor-pointer -z-1"
+  @click="closeModal"/>
+  <VContainer class="main-content m-auto"  v-if="product">
+    <figure class="-my-8 -mx-12 flex-grow relatie">
+        <img v-if="product.img"
           :src="require(`../assets/img/${product.img}.png`)"
           :alt="product.img"
           class="h-full w-full object-cover object-center"
@@ -12,11 +13,11 @@
         </figure>
       <template #aside>
         <div class="flex justify-end mb-4">
-          <VButton class="flex justify-center" variant="icon" @click="closeModal()">
+          <VButton class="flex justify-center" variant="icon" @click="closeModal">
             <ICross class="text-gray-700 h-8 w-8 p-2" />
           </VButton>
         </div>
-        <VSection :title="product.name" :price="price" v-if="product">
+        <VSection :title="product.name" :price="price">
           <!-- <p>{{ product.description }}</p> -->
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat natus quas
@@ -29,7 +30,7 @@
             </p>
             <VButton
               variant="primary"
-              class="flex justify-center mt-8"
+              class="flex justify-center mt-8 add"
               @click="addToCart(product.code)"
             >
               Add to cart
@@ -38,6 +39,7 @@
         </VSection>
       </template>
   </VContainer>
+  </div>
 </template>
 
 <script>
@@ -54,21 +56,13 @@ export default {
     VButton,
   },
   props: {
-    cart: {
+    product: {
       type: Object,
-      default: () => ({}),
-      require: true,
-    },
-    id: {
-      type: String,
-      default: '',
+      default: () => (null),
       require: true,
     },
   },
   computed: {
-    product() {
-      return this.cart.products[this.id];
-    },
     price() {
       return `${this.product.price} ${this.product.coin}`;
     },
@@ -76,7 +70,7 @@ export default {
   methods: {
     addToCart(id) {
       this.$emit('add', id);
-      this.$emit('modal', null);
+      this.closeModal();
     },
     closeModal() {
       this.$emit('modal', null);

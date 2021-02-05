@@ -12,6 +12,10 @@ class Checkout {
     return rawPrice.toFixed(this.decimals);
   }
 
+  product(id) {
+    return Object.values(this.products).find((product) => product.code === id);
+  }
+
   // Since we have a cart, i think its better to have
   // add and remove but its easy to update
   add(id, units) {
