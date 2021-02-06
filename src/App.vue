@@ -9,7 +9,7 @@
       </template>
     </VContainer>
     <transition name="modal-fade" @before-leave="beforeLeave" @after-enter="afterEnter">
-      <VModal :product="modal" v-if="hasModal" @modal="setModal" @add="add"/>
+      <VModal :product="modal" v-show="hasModal" @modal="setModal" @add="add"/>
     </transition>
   </div>
 </template>
@@ -21,10 +21,8 @@ import VModal from './components/v-modal.vue';
 import VSection from './components/layout/v-section.vue';
 import Table from './components/table/index.vue';
 
-import products from '../fakeData/products';
-import Checkout from '../helpers/checkout';
+import cart from '../fakeData/products';
 
-const cart = new Checkout(products);
 export default {
   name: 'App',
   components: {

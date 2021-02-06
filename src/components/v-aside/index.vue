@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col flex-grow">
     <VSection title="Order summary" />
-    <div class="flex justify-between  mt-0 pb-8 border-b border-gray-300 font-light">
+    <div class="summary flex justify-between  mt-0 pb-8 border-b border-gray-300 font-light">
       <div>{{ cart.items }} items</div>
       <div>
         {{ cart.basePrice() }}
       </div>
     </div>
     <VSummary :discounts="discounts" />
-    <div class="flex justify-between mt-auto border-t border-gray-300 pt-4 pb-8 text-xl">
+    <div class="total-cost">
       <div class="text-base uppercase text-gray-500">Total cost</div>
       <strong>{{ cart.total() }}</strong>
     </div>
@@ -49,4 +49,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.total-cost{
+  @apply flex justify-between mt-auto border-t border-gray-300 pt-4 pb-8 text-xl
+}
+</style>

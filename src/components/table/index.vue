@@ -1,7 +1,7 @@
 <template>
   <div>
     <TRow :items="['product details', 'quantity', 'price', 'total']" class="my-6 pt-2" />
-    <TRow v-for="item in products" :key="item.code" class="text-center my-8">
+    <TRow v-for="item in products" :key="item.code" class="text-center my-8 product-row">
       <VProduct
         :name="item.name"
         :code="item.code"
@@ -14,7 +14,7 @@
       <TCell>
         {{ item.price }} {{item.coin}}
       </TCell>
-      <TCell>
+      <TCell class="product-row__price">
         {{ item.basePrice }}
       </TCell>
     </TRow>

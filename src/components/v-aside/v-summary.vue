@@ -1,5 +1,5 @@
 <template>
-  <div class="my-6">
+  <div class="discount my-6">
     <transition name="fade">
     <header class="text-gray-400 uppercase font-light text-sm" v-if="hasDiscounts">
       Discounts

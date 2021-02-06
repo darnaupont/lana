@@ -10,21 +10,7 @@
       </div>
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    click(ev) {
-      this.$emit('clickOutside', ev);
-    },
-    props: {
-      modal: {
-        type: Boolean,
-        default: false,
-      },
-    },
-  },
-};
-</script>
+
 <style lang="scss">
 .v-container {
   &__main {

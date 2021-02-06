@@ -5,16 +5,15 @@ import App from '@/App.vue';
 import VModal from '@/components/v-modal.vue';
 
 test('displays message', () => {
-  const product = {
-    code: 'code_test',
-    name: 'name_test',
-    img: 'shirt',
-    price: 10,
-    coin: 'coin',
-  };
   const wrapper = mount(VModal, {
     propsData: {
-      product,
+      product: {
+        code: 'code_test',
+        name: 'name_test',
+        img: 'shirt',
+        price: 10,
+        coin: 'coin',
+      },
     },
   });
   const img = wrapper.find('img');
