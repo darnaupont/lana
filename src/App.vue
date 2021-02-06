@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="wrapper">
-    <VContainer class="main-content relative">
+    <VContainer class="main-content relative overflow-y-auto">
       <VSection title="Shopping cart">
         <Table :cart="cart" @modal="setModal" />
       </VSection>

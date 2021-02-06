@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-cols-6 gap-4">
+  <div class="grid grid-cols-4 md:grid-cols-6 gap-4">
     <slot>
     <div v-for="item, index in items"
     :key="item"
-    :class="[index === 0 ? 'col-span-3' : 'text-center']"
+    :class="[index === 0 ? 'col-span-3' : 'hidden md:block text-center']"
     class="uppercase text-gray-400 text-xs">
       {{ item }}
     </div>

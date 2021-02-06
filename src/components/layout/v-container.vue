@@ -1,6 +1,6 @@
 <template>
-  <div class="v-container rounded-md overflow-hidden">
-      <div class="flex flex-wrap overflow-hidden">
+  <div class="v-container rounded-md">
+      <div class="flex flex-wrap min-h-full">
         <main class="v-container__main w-full lg:w-8/12 ">
           <slot />
         </main>

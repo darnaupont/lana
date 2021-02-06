@@ -2,8 +2,8 @@
 <div class="modal z-10  h-screen  flex justify-center items-center">
   <div  class="fixed inset-0 cursor-pointer -z-1"
   @click="closeModal"/>
-  <VContainer class="main-content m-auto"  v-if="product">
-    <figure class="-my-8 -mx-12 flex-grow relatie">
+  <VContainer class="main-content m-auto overflow-hidden"  v-if="product">
+    <figure class="-my-8 -mx-12 flex-grow relative">
         <img v-if="product.img"
           :src="require(`../assets/img/${product.img}.png`)"
           :alt="product.img"

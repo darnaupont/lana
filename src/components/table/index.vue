@@ -13,7 +13,7 @@
       <TCell>
         {{ item.price }} {{item.coin}}
       </TCell>
-      <TCell class="product-row__price">
+      <TCell class="product-row__price col-start-4 md:col-start-6 font-bold md:font-normal">
         {{ item.basePrice }}
       </TCell>
     </TRow>
