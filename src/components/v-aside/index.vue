@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     payment() {
-      console.log('payment');
+      console.log('payment', this.cart.checkoutProducs());
     },
   },
 };

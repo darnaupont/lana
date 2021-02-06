@@ -59,6 +59,11 @@ class Checkout {
     return this.calcTotalString('totalPrice');
   }
 
+  checkoutProducs() {
+    const checkoutProducs = Object.values(this.products).filter((product) => product.units > 0);
+    return checkoutProducs;
+  }
+
   get items() {
     return this.calcTotal('units');
   }

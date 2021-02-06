@@ -18,6 +18,7 @@
           </VButton>
         </div>
         <VSection :title="product.name" :price="price">
+          <!-- in case we want to add it on the produc class -->
           <!-- <p>{{ product.description }}</p> -->
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat natus quas
