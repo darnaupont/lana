@@ -1,14 +1,14 @@
 <template>
     <VCell>
     <VButton class="mx-2 text-blue-500 font-bold btn-remove"
-    variant="icon" @click="remove(item.code)">
+    variant="icon" @click="remove">
         -
     </VButton>
     <input type="number" v-model="units" disabled
     class="border-2 rounded-sm px-3 py-2 w-12 text-center"
  >
     <VButton class="mx-2 text-blue-500 font-bold px-1 btn-add"
-    variant="icon" @click="add(item.code)">
+    variant="icon" @click="add">
         +
     </VButton>
     </VCell>
@@ -25,33 +25,19 @@ export default {
     VCell,
   },
   props: {
-    item: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  data() {
-    return {
-      units: this.item.units,
-    };
-  },
-  watch: {
-    item: {
-      // This will let Vue know to look inside the array
-      deep: true,
-      // We have to move our method to a handler field
-      handler() {
-        this.units = this.item.units;
-      },
+    units: {
+      type: Number,
+      default: 0,
+      require: true,
     },
   },
   methods: {
     add() {
-      this.item.add(1);
+      this.$emit('add');
     },
     remove() {
       if (this.units > 0) {
-        this.item.remove(1);
+        this.$emit('remove');
       }
     },
   },

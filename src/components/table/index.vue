@@ -9,8 +9,7 @@
         class="col-span-3 text-left cursor-pointer"
         @modal="showModal(item.code)"
       />
-
-      <VCounter :item="item" @add="add(item.code)" @remove="remove(item.code)" />
+      <VCounter :units="item.units" @add="add(item.code)" @remove="remove(item.code)" />
       <TCell>
         {{ item.price }} {{item.coin}}
       </TCell>
@@ -41,19 +40,11 @@ export default {
       require: true,
     },
   },
-  data() {
-    return {
-      modal: null,
-      products: this.cart.products,
-    };
-  },
   computed: {
-
-    hasModal() {
-      return Boolean(this.modal);
+    products() {
+      return this.cart.products;
     },
   },
-
   methods: {
     add(id) {
       this.cart.add(id);
